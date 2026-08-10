@@ -1,0 +1,118 @@
+      // KEYBOARD EVENT PROJECT
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keyboard Event Project</title>
+
+    <style>
+        body {
+            background-color: #212121;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .project {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .insert {
+            margin-top: 30px;
+        }
+
+        .key {
+            display: inline-block;
+            border: 1px solid white;
+            padding: 20px;
+            min-width: 100px;
+            margin: 10px;
+        }
+
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid white;
+            padding: 15px 30px;
+        }
+
+        th {
+            background-color: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="project">
+
+        <div id="insert">
+
+            <div class="key">
+                Press any key
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const insert = document.querySelector('#insert');
+
+
+        window.addEventListener('keydown', function (e) {
+
+            insert.innerHTML = `
+            
+            <div class="color">
+
+                <table>
+
+                    <tr>
+                        <th>Key</th>
+                        <th>KeyCode</th>
+                        <th>Code</th>
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            ${e.key === ' ' ? 'Space' : e.key}
+                        </td>
+
+                        <td>
+                            ${e.keyCode}
+                        </td>
+
+                        <td>
+                            ${e.code}
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            `;
+
+        });
+
+    </script>
+
+</body>
+
+</html>
