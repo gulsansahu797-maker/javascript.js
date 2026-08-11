@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GitHub API User</title>
+
+    <style>
+        body {
+            background-color: #212121;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .card {
+            width: 300px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            background-color: #333;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 10px;
+        }
+
+        .card p {
+            font-size: 18px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>GitHub User Information</h1>
+
+    <button id="getUser">Get User</button>
+
+    <div class="card" id="card">
+        <p>Click the button to get user information.</p>
+    </div>
+
+
+    <script>
+
+        // API URL
+        const requestUrl = "https://api.github.com/users/gulsansahu797-maker";
+
+
+        // Button select karna
+        const button = document.querySelector("#getUser");
+
+
+        // Card select karna
+        const card = document.querySelector("#card");
+
+
+        // Button par click event
+        button.addEventListener("click", function () {
+
+            // XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+
+            // API request open karna
+            xhr.open("GET", requestUrl);
+
+
+            // API request ka state check karna
+            xhr.onreadystatechange = function () {
+
+                console.log(xhr.readyState);
+
+
+                // readyState 4 = request complete
+                if (xhr.readyState === 4) {
+
+                    // Response ko JSON se JavaScript object mein convert karna
+                    const data = JSON.parse(this.responseText);
+
+
+                    console.log(typeof data);
+
+                    console.log(data);
+
+                    console.log(data.followers);
+
+
+                    // User information webpage par show karna
+                    card.innerHTML = `
+"
+                        <img src="./photo.jpg" alt="My Photo">
+                        
+                        <h2>${data.login}</h2>
+
+                        <p>
+                            Followers: ${data.followers}
+                        </p>
+
+                        <p>
+                            Following: ${data.following}
+                        </p>
+
+                        <p>
+                            Public Repositories: ${data.public_repos}
+                        </p>
+
+                    `;
+
+                }
+
+            };
+
+
+            // Request send karna
+            xhr.send();
+
+        });
+
+    </script>
+
+</body>
+
+</html>
