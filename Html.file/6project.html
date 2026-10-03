@@ -1,0 +1,238 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech - Company</title>
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #111;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #00bcd4;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #e8f7fa;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #00a8c6;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #007c91;
+        }
+
+        /* Services */
+        .services {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        .service-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            width: 280px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        /* About */
+        .about {
+            background-color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            TechNova
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <h1>Build Your Future With TechNova</h1>
+
+        <p>
+            We create modern websites and digital solutions for businesses.
+        </p>
+
+        <a href="#services" class="btn">
+            Our Services
+        </a>
+
+    </section>
+
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+
+        <h2>Our Services</h2>
+
+        <div class="service-container">
+
+            <div class="card">
+                <h3>Web Development</h3>
+                <p>
+                    We create fast and responsive websites for businesses.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>UI/UX Design</h3>
+                <p>
+                    We design simple and attractive user interfaces.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Digital Marketing</h3>
+                <p>
+                    We help companies grow their online presence.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+
+        <h2>About Us</h2>
+
+        <p>
+            TechNova is a technology company focused on creating
+            modern digital experiences. Our team works with businesses
+            to build websites and digital products.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <p>
+            © 2026 TechNova. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
+```
