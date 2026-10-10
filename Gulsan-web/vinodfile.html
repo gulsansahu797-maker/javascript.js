@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriRide - Tractor & Car Booking</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #172b25;
+  background: #f5faf7;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 7%;
+  background: #07372f;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  color: #45e09b;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  color: #45e09b;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 70px 7%;
+  background: linear-gradient(120deg, #07372f, #12694d);
+  color: white;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 35px;
+}
+
+.hero h1 {
+  font-size: clamp(35px, 5vw, 58px);
+  line-height: 1.15;
+  margin: 20px 0;
+}
+
+.hero h1 span {
+  color: #45e09b;
+}
+
+.hero p {
+  color: #d5eee3;
+  line-height: 1.8;
+  max-width: 500px;
+}
+
+.tag {
+  display: inline-block;
+  background: #145c44;
+  color: #8fffc3;
+  padding: 9px 15px;
+  border-radius: 25px;
+}
+
+.vehicle-art {
+  font-size: 105px;
+  text-align: center;
+  padding: 30px;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #d7f9e8, #91dcb6);
+  animation: float 3s ease-in-out infinite;
+}
+
+.vehicle-art div {
+  font-size: 65px;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.booking {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  margin: 0 7%;
+  position: relative;
+  margin-top: -25px;
+  box-shadow: 0 10px 35px #0b51301a;
+}
+
+.booking h2 {
+  margin-bottom: 20px;
+}
+
+.vehicle-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.vehicle-tabs button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: #edf5ef;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.vehicle-tabs button.active {
+  background: #07834d;
+  color: white;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d4e2d9;
+  border-radius: 8px;
+  background: white;
+  font-size: 15px;
+}
+
+.primary-btn {
+  background: #07834d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: #045d37;
+  transform: translateY(-2px);
+}
+
+.form-grid .primary-btn {
+  grid-column: 1 / -1;
+}
+
+section.content {
+  padding: 65px 7%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.section-heading p {
+  color: #64756c;
+}
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.vehicle-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e1ebe4;
+  transition: 0.3s;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px #103e2018;
+}
+
+.vehicle-image {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  font-size: 95px;
+  background: linear-gradient(135deg, #dff7e8, #b6e9d0);
+}
+
+.car-image {
+  background: linear-gradient(135deg, #e2efff, #b9d9fa);
+}
+
+.vehicle-info {
+  padding: 25px;
+}
+
+.vehicle-info h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.vehicle-info p {
+  color: #64756c;
+  line-height: 1.7;
+}
+
+.price {
+  color: #07834d;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 18px 0;
+}
+
+.vehicle-info .primary-btn {
+  width: 100%;
+}
+
+.features {
+  background: #eaf5ee;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature {
+  background: white;
+  padding: 25px 18px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.feature .icon {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: #64756c;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.step {
+  padding: 25px;
+  border-radius: 14px;
+  background: white;
+  text-align: center;
+  border: 1px solid #e1ebe4;
+}
+
+.step span {
+  display: inline-grid;
+  place-items: center;
+  background: #07834d;
+  color: white;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+footer {
+  background: #07372f;
+  color: white;
+  text-align: center;
+  padding: 30px 7%;
+  line-height: 2;
+}
+
+footer a {
+  color: #45e09b;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  header {
+    padding: 18px 5%;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: #07372f;
+    flex-direction: column;
+    padding: 25px;
+  }
+
+  nav.open {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 45px 6%;
+  }
+
+  .vehicle-art {
+    font-size: 75px;
+  }
+
+  .booking {
+    margin: 20px 5%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🚜 VinodRide</div>
+
+  <button class="menu-btn" id="menuBtn"
+    aria-label="Open navigation"
+    aria-expanded="false">☰</button>
+
+  <nav id="nav">
+    <a href="#home">Home</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#booking">Book Now</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div>
+      <span class="tag">Easy • Safe • Affordable</span>
+      <h1>Book Tractors & Cars for Your <span>Every Need</span></h1>
+      <p>
+        Need a tractor for farming or a car for travelling?
+        Choose your vehicle, select your dates, and send your
+        booking request in a few simple steps.
+      </p>
+    </div>
+
+    <div class="vehicle-art">
+      🚜
+      <div>🌾 &nbsp; 🚗</div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <h2>📅 Book Your Vehicle</h2>
+
+    <div class="vehicle-tabs">
+      <button class="active" data-type="Tractor">🚜 Tractor</button>
+      <button data-type="Car">🚗 Car</button>
+    </div>
+
+    <form id="bookingForm">
+      <div class="form-grid">
+        <input name="name" placeholder="Your full name"
+          autocomplete="name" required>
+
+        <input name="phone" type="tel"
+          placeholder="10-digit mobile number"
+          pattern="[6-9][0-9]{9}"
+          title="Enter a valid 10-digit Indian mobile number"
+          autocomplete="tel" required>
+
+        <select name="vehicle" id="vehicleSelect" required>
+          <option value="Tractor">Tractor</option>
+          <option value="Car">Car</option>
+        </select>
+
+        <input name="location" placeholder="Pickup location"
+          autocomplete="street-address" required>
+
+        <input name="date" type="date" id="dateInput" required>
+
+        <select name="duration" required>
+          <option value="">Rental duration</option>
+          <option value="4 hours">4 hours</option>
+          <option value="8 hours">8 hours</option>
+          <option value="1 day">1 day</option>
+          <option value="3 days">3 days</option>
+          <option value="1 week">1 week</option>
+        </select>
+
+        <button class="primary-btn" type="submit">
+          Request Booking →
+        </button>
+      </div>
+    </form>
+
+    <p id="bookingMessage" role="status" aria-live="polite"
+      style="margin-top:18px;color:#07834d"></p>
+  </section>
+
+  <section class="content" id="vehicles">
+    <div class="section-heading">
+      <h2>Our Vehicles</h2>
+      <p>Choose the right vehicle for your journey or farm.</p>
+    </div>
+
+    <div class="vehicle-grid">
+      <article class="vehicle-card">
+        <div class="vehicle-image">🚜</div>
+        <div class="vehicle-info">
+          <h3>Tractor Rental</h3>
+          <p>
+            Suitable for farming, field preparation,
+            transportation, and other agricultural tasks.
+          </p>
+          <div class="price">From ₹800 / hour*</div>
+          <button class="primary-btn book-btn"
+            data-type="Tractor">Book Tractor</button>
+        </div>
+      </article>
+
+      <article class="vehicle-card">
+        <div class="vehicle-image car-image">🚗</div>
+        <div class="vehicle-info">
+          <h3>Car Rental</h3>
+          <p>
+            Convenient travel for family trips, local journeys,
+            and business visits.
+          </p>
+          <div class="price">From ₹1,500 / day*</div>
+          <button class="primary-btn book-btn"
+            data-type="Car">Book Car</button>
+        </div>
+      </article>
+    </div>
+
+    <p style="text-align:center;color:#64756c;margin-top:20px">
+      *Example prices only. Set your actual rental rates before launch.
+    </p>
+  </section>
+
+  <section class="content features" id="about">
+    <div class="section-heading">
+      <h2>Why Choose AgriRide?</h2>
+      <p>A simple way to request your next vehicle rental.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="icon">💰</div>
+        <h3>Clear Pricing</h3>
+        <p>Display rental prices before booking.</p>
+      </article>
+
+      <article class="feature">
+        <div class="icon">🛡️</div>
+        <h3>Safety First</h3>
+        <p>Verify vehicles and owners before renting.</p>
+      </article>
+
+      <article class="feature">
+        <div class="icon">⚡</div>
+        <h3>Easy Booking</h3>
+        <p>Send your request through a simple form.</p>
+      </article>
+
+      <article class="feature">
+        <div class="icon">🤝</div>
+        <h3>Customer Support</h3>
+        <p>Provide a real contact channel for assistance.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="section-heading">
+      <h2>How It Works</h2>
+      <p>Three simple steps to request a vehicle.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step">
+        <span>1</span>
+        <h3>Choose Vehicle</h3>
+        <p>Select a tractor or car for your needs.</p>
+      </article>
+
+      <article class="step">
+        <span>2</span>
+        <h3>Enter Details</h3>
+        <p>Provide your location, date, and duration.</p>
+      </article>
+
+      <article class="step">
+        <span>3</span>
+        <h3>Confirm Booking</h3>
+        <p>Wait for the rental provider to confirm availability.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+    
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <p>Need a tractor or car? Contact us today!</p>
+  <p>24/7 Support</p>
+
+  <div class="contact-card">
+    <h3>VinodRide Support</h3>
+
+    <p>📞 Phone: +91 7697244450 </p>
+    <p>✉️ Email: support@vinodride.com</p>
+    <p>📍 Location: Singrauli, Madhya Pradesh</p>
+
+    <a href="tel:+917067546940" class="contact-btn">
+      Call Now
+    </a>
+
+    <a href="mailto:support@vinodride.com" class="contact-btn">
+      Send Email
+    </a>
+
+    <a
+      href="https://wa.me/917067546940"
+      class="contact-btn"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      WhatsApp Us
+    </a>
+  </div>
+</section>
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+const vehicleSelect = document.getElementById("vehicleSelect");
+const dateInput = document.getElementById("dateInput");
+const bookingForm = document.getElementById("bookingForm");
+const bookingMessage = document.getElementById("bookingMessage");
+
+let selectedType = "Tractor";
+
+// Prevent selecting a past date
+const today = new Date();
+const localToday = [
+  today.getFullYear(),
+  String(today.getMonth() + 1).padStart(2, "0"),
+  String(today.getDate()).padStart(2, "0")
+].join("-");
+
+dateInput.min = localToday;
+
+// Mobile navigation
+menuBtn.addEventListener("click", function () {
+  const isOpen = nav.classList.toggle("open");
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation" : "Open navigation"
+  );
+});
+
+nav.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    nav.classList.remove("open");
+    menuBtn.textContent = "☰";
+    menuBtn.setAttribute("aria-expanded", "false");
+  });
+});
+
+// Choose tractor or car
+document.querySelectorAll(".vehicle-tabs button").forEach(function (button) {
+  button.addEventListener("click", function () {
+    selectedType = button.dataset.type;
+    vehicleSelect.value = selectedType;
+
+    document.querySelectorAll(".vehicle-tabs button").forEach(function (tab) {
+      tab.classList.toggle("active", tab === button);
+    });
+  });
+});
+
+vehicleSelect.addEventListener("change", function () {
+  selectedType = vehicleSelect.value;
+
+  document.querySelectorAll(".vehicle-tabs button").forEach(function (tab) {
+    tab.classList.toggle("active", tab.dataset.type === selectedType);
+  });
+});
+
+// Book buttons take the user to the form
+document.querySelectorAll(".book-btn").forEach(function (button) {
+  button.addEventListener("click", function () {
+    selectedType = button.dataset.type;
+    vehicleSelect.value = selectedType;
+
+    document.querySelectorAll(".vehicle-tabs button").forEach(function (tab) {
+      tab.classList.toggle("active", tab.dataset.type === selectedType);
+    });
+
+    document.getElementById("booking").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
+
+// Demo booking form
+bookingForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const data = new FormData(bookingForm);
+  const name = data.get("name");
+  const type = data.get("vehicle");
+  const date = data.get("date");
+
+  bookingMessage.textContent =
+    "Thank you, " + name + "! Your " + type.toLowerCase() +
+    " booking request for " + date +
+    " is ready. This demo has not sent your request to a provider.";
+
+  bookingMessage.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+});
+</script>
+
+</body>
+</html>
