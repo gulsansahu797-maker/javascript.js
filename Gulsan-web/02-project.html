@@ -1,0 +1,1146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burger House | Food Menu</title>
+<style>
+
+ {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #151515;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+.contact-section {
+  padding: 75px 7%;
+  text-align: center;
+  background: #1c1917;
+  scroll-margin-top: 90px;
+}
+
+.contact-section h2 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.contact-section h2 span {
+  color: #ff9b29;
+}
+
+.contact-section > p {
+  color: #bbb;
+  margin-bottom: 30px;
+}
+
+.contact-card {
+  max-width: 550px;
+  margin: auto;
+  padding: 35px;
+  background: #29231e;
+  border: 1px solid #ff9b29;
+  border-radius: 18px;
+}
+
+.contact-card h3 {
+  color: #ff9b29;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.contact-card p {
+  margin: 18px 0;
+  line-height: 1.7;
+}
+
+.contact-card a {
+  color: #ffb35c;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-btn {
+  display: inline-block;
+  background: #ff9b29;
+  color: #151515 !important;
+  padding: 14px 28px;
+  margin-top: 20px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.contact-btn:hover {
+  background: white;
+}
+
+/* NAVBAR */
+ header{
+  background: #202020;
+  padding: 22px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #443025;
+}
+
+.logo {
+  font-size: 25px;
+  color: #ff9b29;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ff9b29;
+}
+
+.cart-count {
+  background: #ff9b29;
+  color: black;
+  padding: 4px 9px;
+  border-radius: 50%;
+}
+
+/* HOME */
+
+.hero {
+  min-height: 590px;
+  padding: 65px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  background: radial-gradient(
+    circle at 75%,
+    #553015,
+    #151515 65%
+  );
+}
+
+.hero-content {
+  max-width: 520px;
+}
+
+.small-title {
+  color: #ff9b29;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 78px);
+  line-height: 1.1;
+  margin: 20px 0;
+}
+
+.hero h1 span {
+  color: #ff9b29;
+}
+
+.hero p {
+  color: #ccc;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.explore-btn {
+  display: inline-block;
+  background: #ff9b29;
+  color: #171717;
+  text-decoration: none;
+  padding: 16px 30px;
+  border-radius: 35px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.explore-btn:hover {
+  transform: translateY(-5px);
+  background: white;
+}
+
+/* ANIMATED BURGER */
+
+.burger-area {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.burger-circle {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border: 3px dashed #ff9b29;
+  border-radius: 50%;
+  animation: rotate 14s linear infinite;
+}
+
+.burger-circle::before {
+  content: "★";
+  position: absolute;
+  top: -22px;
+  left: 48%;
+  color: #ffcc43;
+  font-size: 35px;
+}
+
+.burger {
+  width: 290px;
+  height: 255px;
+  position: relative;
+  animation: floating 3s ease-in-out infinite;
+  filter: drop-shadow(0 22px 15px #0009);
+}
+
+.burger > div {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-bun {
+  top: 5px;
+  width: 260px;
+  height: 105px;
+  background: linear-gradient(#ffd875, #cf7623);
+  border-radius: 140px 140px 30px 30px;
+  border-bottom: 7px solid #b7641d;
+  z-index: 6;
+  animation: topMove 2s ease-in-out infinite alternate;
+}
+
+.seed {
+  position: absolute;
+  width: 8px;
+  height: 13px;
+  background: #fff5cf;
+  border-radius: 50%;
+  transform: rotate(35deg);
+}
+
+.seed:nth-child(1) { top: 30px; left: 50px; }
+.seed:nth-child(2) { top: 18px; left: 100px; }
+.seed:nth-child(3) { top: 35px; left: 150px; }
+.seed:nth-child(4) { top: 22px; left: 200px; }
+.seed:nth-child(5) { top: 60px; left: 115px; }
+
+.lettuce {
+  width: 275px;
+  height: 27px;
+  top: 105px;
+  background: #69bf27;
+  border-radius: 50% 20% 50% 20%;
+  z-index: 5;
+}
+
+.cheese {
+  width: 255px;
+  height: 27px;
+  top: 128px;
+  background: #ffcf10;
+  border-radius: 8px;
+  z-index: 4;
+}
+
+.tomato {
+  width: 260px;
+  height: 25px;
+  top: 150px;
+  background: #e63b26;
+  border-radius: 40px;
+  z-index: 3;
+}
+
+.patty {
+  width: 265px;
+  height: 48px;
+  top: 167px;
+  background: linear-gradient(#7c3d15, #3d1b0b);
+  border-radius: 35px;
+  z-index: 2;
+}
+
+.bottom-bun {
+  width: 245px;
+  height: 45px;
+  top: 203px;
+  background: linear-gradient(#e9a74f, #ad601c);
+  border-radius: 12px 12px 90px 90px;
+  z-index: 1;
+}
+
+@keyframes floating {
+  50% { transform: translateY(-25px); }
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes topMove {
+  to {
+    transform: translateX(-50%) translateY(-30px);
+  }
+}
+
+/* MENU */
+
+.menu-section {
+  padding: 75px 7%;
+  scroll-margin-top: 90px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin: 15px 0;
+}
+
+.section-heading span {
+  color: #ff9b29;
+}
+
+.section-heading p {
+  color: #aaa;
+  line-height: 1.7;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.filters button {
+  background: transparent;
+  border: 1px solid #ff9b29;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.filters button:hover,
+.filters button.active {
+  background: #ff9b29;
+  color: #151515;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.food-card {
+  background: #24201d;
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid #483427;
+  transition: 0.3s;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  border-color: #ff9b29;
+  box-shadow: 0 15px 30px #0007;
+}
+
+.food-icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.food-category {
+  background: #f17c2d;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.food-card h3 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.food-card p {
+  color: #bbb;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.food-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.price {
+  color: #ff9b29;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.add-btn {
+  background: #ff9b29;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 18px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  background: white;
+}
+
+/* CART */
+
+.cart-section {
+  background: #211b17;
+  padding: 75px 7%;
+  scroll-margin-top: 90px;
+}
+
+.cart-box {
+  max-width: 850px;
+  margin: auto;
+  background: #2b241f;
+  padding: 25px;
+  border-radius: 18px;
+}
+
+.cart-row {
+  padding: 17px 0;
+  border-bottom: 1px solid #554034;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart-row p {
+  color: #aaa;
+  margin-top: 6px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity button {
+  background: #ff9b29;
+  border: none;
+  border-radius: 6px;
+  width: 33px;
+  height: 33px;
+  font-size: 20px;
+}
+
+.total-box {
+  text-align: right;
+  margin-top: 25px;
+}
+
+.total-box h3 {
+  color: #ff9b29;
+  font-size: 28px;
+}
+
+.total-box p {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.clear-btn {
+  background: transparent;
+  border: 1px solid #ff9b29;
+  color: #ff9b29;
+  padding: 12px 22px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #151515;
+}
+
+footer h2 {
+  color: #ff9b29;
+}
+
+footer p {
+  color: #aaa;
+  margin-top: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+
+  nav {
+    gap: 14px;
+  }
+
+  .burger-area {
+    transform: scale(0.75);
+    margin: -40px 0;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+food-card {
+  overflow: hidden;
+  padding: 0;
+  background: #24201d;
+  border: 1px solid #483427;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  border-color: #ff9b29;
+}
+
+.food-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.food-card:hover .food-photo {
+  transform: scale(1.04);
+}
+
+.food-category {
+  margin: 20px 20px 12px;
+}
+
+.food-card h3 {
+  margin: 0 20px 12px;
+}
+
+.food-card p {
+  margin: 0 20px;
+  color: #bbb;
+}
+
+.food-bottom {
+  margin: 22px 20px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.food-image-box {  
+  width: 100%;
+  height: 230px;
+  background: #35271e;
+  overflow: hidden;
+}
+
+.food-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.food-fallback {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+  <div class="logo">🍔 BurgerHouse</div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#cart">
+      Cart <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </nav>
+</header>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+  <div class="hero-content">
+    <div class="small-title">FRESH & DELICIOUS</div>
+
+    <h1>
+      THE BEST <br>
+      <span>BURGER</span> <br>
+      IN TOWN
+    </h1>
+
+    <p>
+      Enjoy fresh burgers, tasty Indian dishes,
+      Chinese rice, delicious paneer and much more.
+      Explore our restaurant menu today!
+    </p>
+
+    <a href="#menu" class="explore-btn">
+      EXPLORE MENU →
+    </a>
+  </div>
+
+  <div class="burger-area">
+    <div class="burger-circle"></div>
+
+    <div class="burger">
+      <div class="top-bun">
+        <i class="seed"></i>
+        <i class="seed"></i>
+        <i class="seed"></i>
+        <i class="seed"></i>
+        <i class="seed"></i>
+      </div>
+
+      <div class="lettuce"></div>
+      <div class="cheese"></div>
+      <div class="tomato"></div>
+      <div class="patty"></div>
+      <div class="bottom-bun"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOD MENU -->
+
+<section class="menu-section" id="menu">
+
+  <div class="section-heading">
+    <div class="small-title">OUR SPECIAL FOOD</div>
+    <h2>Restaurant <span>Menu</span></h2>
+    <p>Choose your favorite dishes and add them to your cart.</p>
+  </div>
+
+  <div class="filters">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="burger">Burgers</button>
+    <button data-filter="starters">Starters</button>
+    <button data-filter="paneer">Paneer</button>
+    <button data-filter="dal">Dal & Raita</button>
+    <button data-filter="breads">Indian Breads</button>
+    <button data-filter="rice">Rice & Pulao</button>
+    <button data-filter="chinese">Chinese Rice</button>
+    <button data-filter="platters">Platters</button>
+  </div>
+
+  <div class="menu-grid" id="menuGrid"></div>
+
+</section>
+
+<!-- CART -->
+
+<section class="cart-section" id="cart">
+
+  <div class="section-heading">
+    <h2>Your <span>Cart</span></h2>
+    <p>Check your selected food items.</p>
+  </div>
+
+  <div class="cart-box">
+    <div id="cartItems">Your cart is empty.</div>
+
+    <div class="total-box">
+      <h3>Subtotal: <span id="total">₹0</span></h3>
+      <p>Taxes and delivery charges are not included.</p>
+
+      <button class="clear-btn" id="clearCart">
+        Clear Cart
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section" id="contact">
+
+  <h2>Contact <span>Us</span></h2>
+
+  <p>Have any questions? Contact BurgerHouse!</p>
+
+  <div class="contact-card">
+
+    <h3>🍔 BurgerHouse</h3>
+
+    <p>👤 Name: Gulsan Sahu</p>
+
+    <p>
+      📞 Phone:
+      <a href="tel:+917067546940">
+        +91 7067546940
+      </a>
+    </p>
+
+    <p>
+      📧 Email:
+      <a href="mailto:gulsansahu797@gmail.com">
+        gulsansahu797@gmail.com
+      </a>
+    </p>
+
+    <p>📍 Location: Singrauli, Madhya Pradesh</p>
+
+    <a class="contact-btn"
+       href="mailto:gulsansahu797@gmail.com">
+      Contact Now →
+    </a>
+
+  </div>
+
+</section>
+
+  </div>
+</section>
+
+</footer> 
+
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+// Food items and demo prices
+// Change the prices to match your restaurant menu.
+
+const foods = [ 
+
+  
+  {id:1,name:"Classic Burger",price:149,category:"burger",icon:"🍔"},
+  {id:2,name:"Cheese Burger",price:199,category:"burger",icon:"🍔"},
+  {id:3,name:"Double Cheese Burger",price:249,category:"burger",icon:"🍔"},
+  {id:4,name:"Veg Burger",price:129,category:"burger",icon:"🍔"},
+
+  // Starters
+  {id:5,name:"Soya Tikka",price:150,category:"starters",icon:"🍢"},
+  {id:6,name:"Stuffed Aloo",price:160,category:"starters",icon:"🥔"},
+  
+{
+  id: 1,
+  name: "Classic Burger",
+  price: 149,
+  category: "burger",
+  icon: "🍔",
+  image: "images/classic-burger.jpg"
+},
+{
+  id: 2,
+  name: "Cheese Burger",
+  price: 199,
+  category: "burger",
+  icon: "🍔",
+  image: "images/cheese-burger.jpg"
+},
+{
+  id: 3,
+  name: "Double Cheese Burger",
+  price: 249,
+  category: "burger",
+  icon: "🍔",
+  image: "images/double-burger.jpg"
+},
+{
+  id: 4,
+  name: "Veg Burger",
+  price: 129,
+  category: "burger",
+  icon: "🍔",
+  image: "images/veg-burger.jpg"
+},
+
+  {id:11,name:"Mushroom Tikka",price:220,category:"starters",icon:"🍄"},
+  {id:12,name:"Malai Broccoli Tikka",price:250,category:"starters",icon:"🥦"},
+  {id:13,name:"Paneer Malai Tikka",price:260,category:"starters",icon:"🧀"},
+
+  // Paneer
+  {id:14,name:"Malai Kofta",price:250,category:"paneer",icon:"🍛"},
+  {id:15,name:"Kadhai Paneer",price:250,category:"paneer",icon:"🍛"},
+  {id:16,name:"Palak Paneer",price:280,category:"paneer",icon:"🥬"},
+  {id:17,name:"Paneer Lababdar",price:280,category:"paneer",icon:"🍛"},
+  {id:18,name:"Paneer Bhurji",price:280,category:"paneer",icon:"🧀"},
+  {id:19,name:"Butter Paneer Masala",price:280,category:"paneer",icon:"🍛"},
+  {id:20,name:"Paneer Angara",price:280,category:"paneer",icon:"🌶️"},
+  {id:21,name:"Kaju Curry",price:300,category:"paneer",icon:"🥘"},
+
+  // Dal and Raita
+  {id:22,name:"Dal Tadka",price:160,category:"dal",icon:"🥣"},
+  {id:23,name:"Dal Dhaba",price:180,category:"dal",icon:"🥣"},
+  {id:24,name:"Dal Makhani",price:220,category:"dal",icon:"🥣"},
+  {id:25,name:"Plain Curd",price:100,category:"dal",icon:"🥛"},
+  {id:26,name:"Boondi Raita",price:120,category:"dal",icon:"🥣"},
+  {id:27,name:"Cucumber Raita",price:150,category:"dal",icon:"🥒"},
+  {id:28,name:"Fruit Raita",price:200,category:"dal",icon:"🥣"},
+
+  // Indian Breads
+  {id:29,name:"Tandoori Roti",price:15,category:"breads",icon:"🫓"},
+  {id:30,name:"Butter Naan",price:30,category:"breads",icon:"🫓"},
+  {id:31,name:"Garlic Naan",price:40,category:"breads",icon:"🫓"},
+  {id:32,name:"Cheese Naan",price:45,category:"breads",icon:"🫓"},
+  {id:33,name:"Chilli Garlic Naan",price:45,category:"breads",icon:"🫓"},
+  {id:34,name:"Lachha Paratha",price:50,category:"breads",icon:"🫓"},
+  {id:35,name:"Pudina Paratha",price:50,category:"breads",icon:"🫓"},
+  {id:36,name:"Kulcha",price:60,category:"breads",icon:"🫓"},
+  {id:37,name:"Bread Basket",price:150,category:"breads",icon:"🥖"},
+
+  // Rice
+  {id:38,name:"Steamed Rice",price:110,category:"rice",icon:"🍚"},
+  {id:39,name:"Jeera Rice",price:130,category:"rice",icon:"🍚"},
+  {id:40,name:"Peas Pulao",price:160,category:"rice",icon:"🍚"},
+  {id:41,name:"Veg Pulao",price:170,category:"rice",icon:"🍚"},
+  {id:42,name:"Curd Rice",price:170,category:"rice",icon:"🍚"},
+  {id:43,name:"Butter Khichdi",price:200,category:"rice",icon:"🍲"},
+  {id:44,name:"Kashmiri Pulao",price:250,category:"rice",icon:"🍚"},
+  {id:45,name:"Veg Dum Biryani",price:300,category:"rice",icon:"🍛"},
+
+  // Chinese
+  {id:46,name:"Veg Fried Rice",price:160,category:"chinese",icon:"🍚"},
+  {id:47,name:"Schezwan Rice",price:170,category:"chinese",icon:"🍚"},
+  {id:48,name:"Punjabi Rice",price:160,category:"chinese",icon:"🍚"},
+  {id:49,name:"Veg Singapore Rice",price:180,category:"chinese",icon:"🍚"},
+  {id:50,name:"Veg Hongkong Rice",price:180,category:"chinese",icon:"🍚"},
+  {id:51,name:"Veg Triple Rice",price:200,category:"chinese",icon:"🍚"},
+  {id:52,name:"Crispy Corn Rice",price:200,category:"chinese",icon:"🌽"},
+
+  // Platters
+  {id:53,name:"Chinese Platter",price:399,category:"platters",icon:"🍱"},
+  {id:54,name:"South Indian Platter",price:399,category:"platters",icon:"🍽️"},
+  {id:55,name:"Tandoori Platter",price:499,category:"platters",icon:"🍢"}
+];
+
+const categoryNames = {
+  burger:"Burgers",
+  starters:"Starters",
+  paneer:"Paneer",
+  dal:"Dal & Raita",
+  breads:"Indian Breads",
+  rice:"Rice & Pulao",
+  chinese:"Chinese Rice",
+  platters:"Platters"
+};
+
+const menuGrid = document.getElementById("menuGrid");
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const totalElement = document.getElementById("total");
+
+let cart = [];
+
+// DISPLAY FOOD MENU
+
+function displayMenu(category = "all") {
+  const selectedFoods = category === "all"
+    ? foods
+    : foods.filter(food => food.category === category);
+
+  menuGrid.innerHTML = selectedFoods.map(food => `
+    <div class="food-card">
+
+<div class="food-image-box">
+  <img
+    src="${food.image}"
+    alt="${food.name}"
+    class="food-photo"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  >
+  <div class="food-fallback" style="display:none">
+    ${food.icon || "🍔"}
+  </div>
+</div>
+
+      <span class="food-category">
+        ${categoryNames[food.category]}
+      </span>
+
+      <h3>${food.name}</h3>
+      <p>Freshly prepared delicious food.</p>
+
+      <div class="food-bottom">
+        <span class="price">₹${food.price}</span>
+
+        <button class="add-btn" data-id="${food.id}">
+          Add +
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function displayMenu(category = "all") {
+
+  const selectedFoods = category === "all"
+    ? foods
+    : foods.filter(food => food.category === category);
+
+  menuGrid.innerHTML = selectedFoods.map(food => `
+    <div class="food-card">
+
+      
+<div class="food-icon">
+  ${food.icon || "🍔"}
+</div>
+
+
+      <span class="food-category">
+        ${categoryNames[food.category]}
+      </span>
+
+      <h3>${food.name}</h3>
+
+      <p>Freshly prepared delicious food.</p>
+
+      <div class="food-bottom">
+        <span class="price">₹${food.price}</span>
+
+        <button class="add-btn" data-id="${food.id}">
+          Add +
+        </button>
+      </div>
+
+    </div>
+  `).join("");
+}
+
+// FILTER BUTTONS
+
+const filterButtons = document.querySelectorAll(".filters button");
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    displayMenu(button.dataset.filter);
+
+  });
+});
+
+
+// ADD TO CART
+
+menuGrid.addEventListener("click", event => {
+  const button = event.target.closest(".add-btn");
+
+  if (!button) return;
+
+  const id = Number(button.dataset.id);
+
+  addToCart(id);
+
+  button.textContent = "Added ✓";
+
+  setTimeout(() => {
+    if (button.isConnected) {
+      button.textContent = "Add +";
+    }
+  }, 1000);
+});
+
+function addToCart(id) {
+    
+
+  const food = foods.find(item => item.id === id);
+
+  if (!food) return;
+
+  const existing = cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({
+      ...food,
+      quantity: 1
+    });
+  }
+
+  updateCart();
+}
+
+// UPDATE CART
+
+function updateCart() {
+  let total = 0;
+  let count = 0;
+
+  if (cart.length === 0) {
+    cartItems.textContent = "Your cart is empty.";
+  } else {
+    cartItems.innerHTML = cart.map(item => {
+      total += item.price * item.quantity;
+      count += item.quantity;
+
+      return `
+        <div class="cart-row">
+          <div>
+            <strong>${item.name}</strong>
+            <p>₹${item.price} each</p>
+          </div>
+
+          <div class="quantity">
+            <button data-id="${item.id}" data-change="-1">−</button>
+            <span>${item.quantity}</span>
+            <button data-id="${item.id}" data-change="1">+</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  cartCount.textContent = count;
+  totalElement.textContent = "₹" + total;
+}
+
+// CHANGE QUANTITY
+
+cartItems.addEventListener("click", event => {
+  const button = event.target.closest("button[data-change]");
+
+  if (!button) return;
+
+  const id = Number(button.dataset.id);
+  const change = Number(button.dataset.change);
+
+  const item = cart.find(food => food.id === id);
+
+  if (!item) return;
+
+  item.quantity += change;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(food => food.id !== id);
+  }
+
+  updateCart();
+});
+
+// CLEAR CART
+
+document.getElementById("clearCart")
+  .addEventListener("click", () => {
+    cart = [];
+    updateCart();
+  });
+
+// INITIALIZE WEBSITE
+
+displayMenu();
+updateCart();
+
+</script>
+
+</body>
+</html>
